@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.12.202003180620-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/resources/spring-beans.xml</config>
+		<config>src/main/resources/spring-beans-annnot.xml</config>
+		<config>src/main/resources/strategyTest.xml</config>
+		<config>src/main/resources/strategyTest-annot.xml</config>
+		<config>src/main/resources/spring-beans-user.xml</config>
+		<config>src/main/resources/spring-self-study.xml</config>
+		<config>src/main/resources/mybatis/CustomerSelfMapper.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/resources/beans-web.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

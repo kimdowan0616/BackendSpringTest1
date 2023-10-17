@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 1. Properties file 정보 설정 -->
+	<context:property-placeholder location="classpath:value.properties"/>
+	
+	<!-- 2. DataSource 구현체인 HikariDataSource를 SpringBean으로 등록 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		p:driverClassName="${db.driverClass}" p:jdbcUrl="${db.url}"
+		p:username="${db.username}" p:password="${db.password}" />
+		
+		
+	<!-- 3. Mybatis-Spring의 SqlSessionFactoryBean을 SpringBean으로 등록 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" 
+			value="classpath:mybatis/SqlMapConfig.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mybatis/*Mapper.xml</value>
+			</list>
+		</property>	
+	</bean>
+	
+	<!-- 4. Mybatis-Spring의 SqlSessionTemplate -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate" >
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+</beans>
